@@ -82,7 +82,7 @@ function AuthForm({ header, redirect, buttonName, redirectBtnName, handleFunctio
                                         </p>
                                         :
                                         <p className="text-sm font-light text-gray-800  text-center mt-4 dark:text-gray-400">
-                                            Already On learnwise ?  <span className="font-medium text-primary-600 hover:underline dark:text-primary-500">{redirectBtnName}</span>
+                                            Already On Todo ?  <span className="font-medium text-primary-600 hover:underline dark:text-primary-500">{redirectBtnName}</span>
                                         </p>
                                     }
                                 </Link>
