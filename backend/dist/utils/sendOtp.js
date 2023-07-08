@@ -1,7 +1,8 @@
 "use strict";
 const nodemailer = require("nodemailer");
-const auth_email = "fliq.learnwise@gmail.com";
-const auth_password = "ivlhvvvptyxxlpzp";
+const auth_email = process.env.AUTH_EMAIL;
+const auth_password = process.env.AUTH_EMAIL_PASSWORD;
+
 let otpValue = null;
 const transporter = nodemailer.createTransport({
     service: "gmail",
