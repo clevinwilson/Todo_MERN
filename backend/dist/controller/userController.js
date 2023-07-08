@@ -12,11 +12,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.register = void 0;
+exports.doLogin = exports.register = void 0;
 const express_async_handler_1 = __importDefault(require("express-async-handler"));
 const userModel_1 = __importDefault(require("../models/userModel"));
 const errors_1 = __importDefault(require("../utils/errors"));
 const bcrypt = require("bcrypt");
+const jwt = require('../utils/jwt');
+//user signup
 exports.register = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email, password } = req.body;
     //checking the user exist
@@ -35,4 +37,24 @@ exports.register = (0, express_async_handler_1.default)((req, res) => __awaiter(
     });
     yield user.save();
     res.json({ success: true });
+}));
+//user login
+exports.doLogin = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { email, password } = req.body;
+    //checking the input
+    if (!email || !password)
+        throw new errors_1.default(400, "all Fields required");
+    //checking the user exist 
+    const userExist = yield userModel_1.default.findOne({ email: email });
+    if (!userExist)
+        throw new errors_1.default(400, "invalid email or password");
+    //comparing the user password
+    const match = yield bcrypt.compare(password, userExist.password);
+    if (!match)
+        throw new errors_1.default(400, "invalid email or password");
+    const token = jwt.createToken(userExist._id);
+    res.json({
+        success: true,
+        token,
+    });
 }));
