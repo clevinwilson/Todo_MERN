@@ -15,16 +15,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.register = void 0;
 const express_async_handler_1 = __importDefault(require("express-async-handler"));
 const userModel_1 = __importDefault(require("../models/userModel"));
-const AppError = require('../utils/errors');
+const errors_1 = __importDefault(require("../utils/errors"));
 const bcrypt = require("bcrypt");
 exports.register = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email, password } = req.body;
     //checking the user exist
     if (!email || !password)
-        throw new AppError(400, "all Fields required");
+        throw new errors_1.default(400, "all Fields required");
     const userExist = yield userModel_1.default.findOne({ email: email });
     if (userExist)
-        throw new AppError(409, "user already exists");
+        throw new errors_1.default(409, "user already exists");
     //hashing the password
     const hashPass = yield bcrypt.hash(password, 8);
     if (!hashPass)

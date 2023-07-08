@@ -1,6 +1,6 @@
 import asyncHandler from "express-async-handler";
 import userModel from "../models/userModel";
-const AppError = require('../utils/errors');
+import AppError from "../utils/errors";
 const bcrypt = require("bcrypt");
 
 
