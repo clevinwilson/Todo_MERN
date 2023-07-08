@@ -10,4 +10,5 @@ router.post("/login", userController_1.doLogin);
 router.post("/todos", authChecker, todoController_1.addTodos);
 router.get("/todo", authChecker, todoController_1.getTodos);
 router.patch('/todo/:id', authChecker, todoController_1.updateTodos);
+router.delete("/todo/:id", authChecker, todoController_1.deleteTodo);
 exports.default = router;

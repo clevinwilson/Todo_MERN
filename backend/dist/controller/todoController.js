@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateTodos = exports.getTodos = exports.addTodos = void 0;
+exports.deleteTodo = exports.updateTodos = exports.getTodos = exports.addTodos = void 0;
 const express_async_handler_1 = __importDefault(require("express-async-handler"));
 const todoModel_1 = __importDefault(require("../models/todoModel"));
 const errors_1 = __importDefault(require("../utils/errors"));
@@ -42,4 +42,11 @@ exports.updateTodos = (0, express_async_handler_1.default)((req, res) => __await
         },
     });
     res.json({ status: true });
+}));
+exports.deleteTodo = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    if (!req.params.id)
+        throw new errors_1.default(400, "all Fields required");
+    let deleteTodo = yield todoModel_1.default.deleteOne({ _id: req.params.id });
+    if (deleteTodo)
+        res.json({ status: true, message: "Todo deleted successfully" });
 }));

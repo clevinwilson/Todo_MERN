@@ -24,3 +24,8 @@ export const fetchTodos = () => {
 export const editTodoApi = (id: string, text: string) => {
   return axiosInstance().patch(`/todo/${id}`, { text });
 };
+
+//delete todo
+export const deleteTodoApi=(id:string)=>{
+    return axiosInstance().delete(`/todo/${id}`)
+}

@@ -35,3 +35,10 @@ export const updateTodos = asyncHandler(async (req, res) => {
   );
   res.json({ status: true });
 });
+
+export const deleteTodo=asyncHandler(async(req,res)=>{
+  if (!req.params.id) throw new AppError(400, "all Fields required");
+
+  let deleteTodo = await todoModel.deleteOne({ _id: req.params.id });
+  if(deleteTodo) res.json({ status: true, message: "Todo deleted successfully" });
+})

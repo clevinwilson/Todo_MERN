@@ -3,7 +3,7 @@ import { BsPlusLg } from "react-icons/bs";
 import { IoTrashBin } from "react-icons/io5";
 import './TodoList.css';
 import { FiEdit2 } from "react-icons/fi";
-import { addTodoApi, editTodoApi, fetchTodos } from '../services/user';
+import { addTodoApi, deleteTodoApi, editTodoApi, fetchTodos } from '../services/user';
 import { toast } from "react-toastify";
 import { string } from 'yup';
 
@@ -41,8 +41,6 @@ function TodoList() {
   //add todo
   function addTodo(text: string) {
     setText('');
-    // setTodo([...todo, newTodo]);
-
     addTodoApi({ text, status: false })
       .then((response) => {
         if (response.data?.newTodo) {
@@ -80,6 +78,27 @@ function TodoList() {
           });
         })
     }
+  }
+
+
+  //Delete todo
+  function deleteTodo(id: string) {
+    deleteTodoApi(id)
+      .then((response) => {
+        if (response.data?.status) {
+          setTodo(todo.filter((obj2) => id != obj2._id))
+        }
+
+        toast.success(response.data.message, {
+          position: "top-right",
+        });
+
+      })
+      .catch((err) => {
+        toast.error(err.error.message, {
+          position: "top-center",
+        });
+      })
   }
 
 
@@ -143,9 +162,7 @@ function TodoList() {
 
                   {/* delete */}
                   <IoTrashBin
-                    onClick={() => {
-                      setTodo(todo.filter((obj2) => obj2._id != obj._id))
-                    }}
+                    onClick={() => {deleteTodo(obj._id) }}
                     className="text-red-700 me-2" />
                 </div>
               </div>
