@@ -29,3 +29,12 @@ export const editTodoApi = (id: string, text: string) => {
 export const deleteTodoApi=(id:string)=>{
     return axiosInstance().delete(`/todo/${id}`)
 }
+
+//find account
+export const findAccount=(values:object)=>{
+  return axiosInstance().post('/send-otp', { ...values });
+}
+
+export const verifyOtp=(otp:string,email:string|boolean)=>{
+  return axiosInstance().post('/verify-otp',{otp,email})
+}

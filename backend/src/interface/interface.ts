@@ -13,6 +13,7 @@ export interface IUser {
   _id: ObjectId;
   email: string;
   password:string;
+  otp:string
 }
 
 //todo

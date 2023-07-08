@@ -13,5 +13,8 @@ const userSchema = new mongoose_1.default.Schema({
         type: String,
         required: [true, "Password is required"],
     },
+    otp: {
+        type: Number,
+    }
 });
 exports.default = mongoose_1.default.model("user", userSchema);

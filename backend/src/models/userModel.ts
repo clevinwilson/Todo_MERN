@@ -11,6 +11,9 @@ const userSchema = new mongoose.Schema<IUser>({
     type: String,
     required: [true, "Password is required"],
   },
+  otp:{
+    type:Number,
+  }
 });
 
 

@@ -1,5 +1,4 @@
 import asyncHandler from "express-async-handler";
-import userModel from "../models/userModel";
 import todoModel from "../models/todoModel";
 import AppError from "../utils/errors";
 
@@ -42,3 +41,5 @@ export const deleteTodo=asyncHandler(async(req,res)=>{
   let deleteTodo = await todoModel.deleteOne({ _id: req.params.id });
   if(deleteTodo) res.json({ status: true, message: "Todo deleted successfully" });
 })
+
+

@@ -29,6 +29,7 @@
     "express-async-handler": "^1.2.0",
     "express-mongo-sanitize": "^2.2.0",
     "jsonwebtoken": "^9.0.1",
-    "mongoose": "^7.3.2"
+    "mongoose": "^7.3.2",
+    "nodemailer": "^6.9.3"
   }
 }
