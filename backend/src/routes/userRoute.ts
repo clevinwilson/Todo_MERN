@@ -3,7 +3,6 @@ import { register } from "../controller/userController";
 const router = Router();
 
 
-
 router.post("/register", register);
 
 
