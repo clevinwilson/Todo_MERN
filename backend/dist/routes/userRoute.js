@@ -2,7 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const userController_1 = require("../controller/userController");
+const todoController_1 = require("../controller/todoController");
+const authChecker = require("../middleware/authHandler");
 const router = (0, express_1.Router)();
 router.post("/register", userController_1.register);
 router.post("/login", userController_1.doLogin);
+router.post("/todos", authChecker, todoController_1.addTodos);
+router.get("/todo", authChecker, todoController_1.getTodos);
+router.patch('/todo/:id', authChecker, todoController_1.updateTodos);
 exports.default = router;

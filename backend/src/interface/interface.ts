@@ -14,3 +14,11 @@ export interface IUser {
   email: string;
   password:string;
 }
+
+//todo
+export interface ITodos{
+  _id:ObjectId;
+  userId:ObjectId;
+  text:string;
+  status:boolean
+}
