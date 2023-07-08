@@ -1,4 +1,4 @@
-import React from 'react'
+import { toast } from "react-toastify";
 import Form from '../components/AuthForm'
 import { signup } from '../services/user';
 
@@ -8,8 +8,10 @@ function SignupPage() {
         console.log(values);
         signup(values).then((response) => {
             console.log(response);
-        }).catch((error) => {
-            console.log(error);
+        }).catch((err) => {
+            toast.error(err.error.message, {
+                position: "top-center",
+            });
         })
     }
 

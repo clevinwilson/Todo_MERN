@@ -2,7 +2,7 @@ import axios, { AxiosError, AxiosResponse } from "axios";
 
 const axiosInstance = () => {
   const instance = axios.create({
-    baseURL: "http://localhost:3000/",
+    baseURL: "http://localhost:3000/api/v1/user",
     timeout: 5000,
     headers: {
       "Content-Type": "application/json",
