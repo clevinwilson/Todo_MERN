@@ -8,7 +8,7 @@ type FormProps = {
     redirect: string,
     buttonName: string,
     redirectBtnName: string,
-    handleFunction: () => void,
+    handleFunction: (values:object) => void,
     formType: string,
 }
 
@@ -34,7 +34,7 @@ function AuthForm({ header, redirect, buttonName, redirectBtnName, handleFunctio
     }
     //submiting the form data
     const onSubmit = (values: object): void => {
-        console.log(values);
+        handleFunction(values)
     }
 
 

@@ -1,12 +1,18 @@
 import React from 'react'
 import Form from '../components/AuthForm'
+import { signup } from '../services/user';
 
 function SignupPage() {
 
-    const handleSignUp = () => {
-        console.log('hellog');
-
+    const handleSignUp = (values: object) => {
+        console.log(values);
+        signup(values).then((response) => {
+            console.log(response);
+        }).catch((error) => {
+            console.log(error);
+        })
     }
+
     return (
         <div>
             <Form
