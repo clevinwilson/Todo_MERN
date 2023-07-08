@@ -6,6 +6,7 @@ import { FiEdit2 } from "react-icons/fi";
 import { addTodoApi, deleteTodoApi, editTodoApi, fetchTodos } from '../services/user';
 import { toast } from "react-toastify";
 import { string } from 'yup';
+import { useNavigate } from 'react-router-dom';
 
 
 type Todo = {
@@ -21,10 +22,15 @@ function TodoList() {
   const [text, setText] = useState('');
   const [todo, setTodo] = useState<Todo[]>([]);
   const inputRef: React.RefObject<HTMLInputElement> = useRef<HTMLInputElement>(null);
+  const navigate=useNavigate();
 
 
-  //fetching data
   useEffect(() => {
+    //checking token
+    const token = localStorage.getItem('jwtToken');
+    if(!token) navigate('/');
+
+      //fetching data
     fetchTodos()
       .then((response) => {
         setTodo(response.data.todos);
