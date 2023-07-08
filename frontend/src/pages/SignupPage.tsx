@@ -19,7 +19,7 @@ function SignupPage() {
         <div>
             <Form
                 header={"SignUp"}
-                redirect={"/login"}
+                redirect={"/"}
                 buttonName={"Sign Up"}
                 redirectBtnName={"Login"}
                 handleFunction={handleSignUp}

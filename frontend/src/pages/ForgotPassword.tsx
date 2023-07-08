@@ -56,7 +56,7 @@ function ForgotPassword() {
 
                                 <button type="submit" className="w-full  bg-primary-600 bg-blue-600  font-medium rounded-lg text-sm px-5 py-2.5 text-center text-white ">Submit</button>
 
-                                <Link to={'/login'}>
+                                <Link to={'/'}>
 
                                     <p className="text-sm font-light text-gray-800  text-center mt-4 dark:text-gray-400">
                                         Back to Login ?  <span className="font-medium text-primary-600 hover:underline dark:text-primary-500">Login</span>

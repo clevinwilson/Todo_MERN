@@ -5,6 +5,7 @@ import SignupPage from './pages/SignupPage';
 import ForgotPassword from './pages/ForgotPassword';
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import TodoList from './pages/TodoList';
 function App() {
 
 
@@ -12,9 +13,11 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path='/login' element={<LoginPage />} />
+          <Route path='/' element={<LoginPage />} />
           <Route path='/signup' element={<SignupPage />} />
           <Route path='/forgot-password' element={<ForgotPassword />} />
+          <Route path='/todo-list' element={<TodoList />} />
+
         </Routes>
       </BrowserRouter>
       <ToastContainer />
