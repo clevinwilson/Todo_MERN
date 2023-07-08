@@ -22,15 +22,15 @@ function TodoList() {
   const [text, setText] = useState('');
   const [todo, setTodo] = useState<Todo[]>([]);
   const inputRef: React.RefObject<HTMLInputElement> = useRef<HTMLInputElement>(null);
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
 
   useEffect(() => {
     //checking token
     const token = localStorage.getItem('jwtToken');
-    if(!token) navigate('/');
+    if (!token) navigate('/');
 
-      //fetching data
+    //fetching data
     fetchTodos()
       .then((response) => {
         setTodo(response.data.todos);
@@ -47,22 +47,24 @@ function TodoList() {
   //add todo
   function addTodo(text: string) {
     setText('');
-    addTodoApi({ text, status: false })
-      .then((response) => {
-        if (response.data?.newTodo) {
-          setTodo([...todo, response.data?.newTodo])
-        }
-      })
-      .catch((err) => {
-        toast.error(err.error.message, {
-          position: "top-center",
-        });
-      })
+    if (text) {
+      addTodoApi({ text, status: false })
+        .then((response) => {
+          if (response.data?.newTodo) {
+            setTodo([...todo, response.data?.newTodo])
+          }
+        })
+        .catch((err) => {
+          toast.error(err.error.message, {
+            position: "top-center",
+          });
+        })
+    }
   }
 
   //edit todo
-  function editTodo(id: string,text:string,status:boolean) {
-    if(status){
+  function editTodo(id: string, text: string, status: boolean) {
+    if (status) {
       editTodoApi(id, text)
         .then((response) => {
           if (response.data.status) {
@@ -146,7 +148,7 @@ function TodoList() {
 
 
                     // saving
-                    onBlur={(e) => {editTodo(obj._id, e.target.value,obj.status)}}
+                    onBlur={(e) => { editTodo(obj._id, e.target.value, obj.status) }}
                     value={obj.text} readOnly={!obj.status} />
                 </div>
                 <div className="right flex">
@@ -168,7 +170,7 @@ function TodoList() {
 
                   {/* delete */}
                   <IoTrashBin
-                    onClick={() => {deleteTodo(obj._id) }}
+                    onClick={() => { deleteTodo(obj._id) }}
                     className="text-red-700 me-2" />
                 </div>
               </div>
