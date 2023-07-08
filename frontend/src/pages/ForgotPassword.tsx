@@ -37,7 +37,7 @@ function ForgotPassword() {
     function submitOtp(){
         verifyOtp(otp,sendOtp)
         .then((response)=>{
-            navigat('/new-password')
+            navigat('/change-password')
         }).catch((err)=>{
             toast.error(err.message, {
                 position: "top-center",

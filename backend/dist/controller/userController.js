@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.verifyOtp = exports.sendOtp = exports.doLogin = exports.register = void 0;
+exports.updatePassword = exports.verifyOtp = exports.sendOtp = exports.doLogin = exports.register = void 0;
 const express_async_handler_1 = __importDefault(require("express-async-handler"));
 const userModel_1 = __importDefault(require("../models/userModel"));
 const errors_1 = __importDefault(require("../utils/errors"));
@@ -90,6 +90,22 @@ exports.verifyOtp = (0, express_async_handler_1.default)((req, res) => __awaiter
         else {
             res.status(404).json({ status: false, message: "OTP not match" });
         }
+    }
+    else {
+        res.status(404).json({ status: false, message: "User not exist" });
+    }
+}));
+exports.updatePassword = (0, express_async_handler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { newPassword, email } = req.body;
+    if (!newPassword)
+        throw new errors_1.default(400, "all Fields required");
+    let user = yield userModel_1.default.findOne({ email: email });
+    if (user) {
+        //hashing the password
+        const hashPass = yield bcrypt.hash(newPassword, 8);
+        if (!hashPass)
+            throw new Error("password hashing failed");
+        let updatePassword = yield userModel_1.default.updateOne({ email: email }, { $set: { password: hashPass } });
     }
     else {
         res.status(404).json({ status: false, message: "User not exist" });

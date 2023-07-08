@@ -13,4 +13,5 @@ router.patch('/todo/:id', authChecker, todoController_1.updateTodos);
 router.delete("/todo/:id", authChecker, todoController_1.deleteTodo);
 router.post("/send-otp", userController_1.sendOtp);
 router.post("/verify-otp", userController_1.verifyOtp);
+router.post("/update-password", userController_1.updatePassword);
 exports.default = router;

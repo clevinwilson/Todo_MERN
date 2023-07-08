@@ -38,3 +38,10 @@ export const findAccount=(values:object)=>{
 export const verifyOtp=(otp:string,email:string|boolean)=>{
   return axiosInstance().post('/verify-otp',{otp,email})
 }
+
+
+export const updatePassword=(value:string)=>{
+  console.log(value);
+  
+  return axiosInstance().post('/update-password',{value})
+}

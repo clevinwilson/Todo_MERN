@@ -83,3 +83,22 @@ export const verifyOtp = asyncHandler(async (req, res) => {
     res.status(404).json({ status: false, message: "User not exist" });
   }
 });
+
+export const updatePassword = asyncHandler(async (req, res) => {
+  const { newPassword, email }: { newPassword: string; email: string } =req.body;
+
+  if (!newPassword) throw new AppError(400, "all Fields required");
+  let user = await userModel.findOne({ email: email });
+  if (user) {
+    //hashing the password
+    const hashPass = await bcrypt.hash(newPassword, 8);
+    if (!hashPass) throw new Error("password hashing failed");
+
+    let updatePassword = await userModel.updateOne(
+      { email: email },
+      { $set: { password: hashPass } }
+    );
+  } else {
+    res.status(404).json({ status: false, message: "User not exist" });
+  }
+});

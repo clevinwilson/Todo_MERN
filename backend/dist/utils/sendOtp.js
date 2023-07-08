@@ -30,13 +30,4 @@ function sendVerificationCode(email) {
         });
     });
 }
-// function verifyOtp(otp) {
-//   return new Promise((resolve, reject) => {
-//     if (otpValue == otp) {
-//       resolve({ status: true });
-//     } else {
-//       reject();
-//     }
-//   });
-// }
 module.exports = { sendVerificationCode };

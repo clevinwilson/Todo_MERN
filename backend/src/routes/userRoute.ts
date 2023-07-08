@@ -4,6 +4,7 @@ import {
   doLogin,
   sendOtp,
   verifyOtp,
+  updatePassword,
 } from "../controller/userController";
 import { addTodos, getTodos, updateTodos,deleteTodo} from "../controller/todoController";
 const authChecker = require("../middleware/authHandler");
@@ -19,6 +20,7 @@ router.patch('/todo/:id',authChecker,updateTodos);
 router.delete("/todo/:id",authChecker,deleteTodo);
 router.post("/send-otp", sendOtp);
 router.post("/verify-otp",verifyOtp);
+router.post("/update-password", updatePassword);
 
 
 export default router;
